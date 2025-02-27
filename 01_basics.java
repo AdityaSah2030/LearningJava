@@ -15,8 +15,8 @@
  * 6. Defining Constants using the 'final' keyword.
  * 7. Introduction to Strings as a non-primitive yet fundamental type.
  *
- * To compile: javac DataTypesAndVariables.java
- * To run:     java DataTypesAndVariables
+ * To compile: javac 01_basics.java
+ * To run:     java 01_basics
  */
 
 public class DataTypesAndVariables {
