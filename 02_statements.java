@@ -21,8 +21,8 @@
  *    - break: Exits the current loop.
  *    - continue: Skips the current iteration and proceeds to the next iteration.
  *
- * To compile: javac StatementsAndScope.java
- * To run:     java StatementsAndScope
+ * To compile: javac 02_statements.java
+ * To run:     java 02_statements
  */
 
 public class StatementsAndScope {
