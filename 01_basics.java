@@ -1,5 +1,5 @@
 /**
- * Program 1: DataTypesAndVariables.java
+ * Program 1: Data Types & Variables
  *
  * This program demonstrates in depth:
  * 1. Primitive Data Types:
