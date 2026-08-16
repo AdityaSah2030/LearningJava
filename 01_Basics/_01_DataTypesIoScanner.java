@@ -2,7 +2,7 @@
 
 import java.util.Scanner;   // Import Scanner class for user input
 
-public class _01_DataTypes_IO_Scanner {
+public class _01_DataTypesIoScanner {
 
     public static void main(String[] args) {
 
@@ -142,3 +142,4 @@ JAVA vs C — KEY DIFFERENCES
 
 =============================================
 */
+

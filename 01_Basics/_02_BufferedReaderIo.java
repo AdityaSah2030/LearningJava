@@ -6,7 +6,7 @@ import java.io.BufferedReader;      // For BufferedReader class
 import java.io.InputStreamReader;   // Wraps System.in into a Reader
 import java.io.IOException;         // BufferedReader throws checked IOException
 
-public class _02_BufferedReader_IO {
+public class _02_BufferedReaderIo {
 
     public static void main(String[] args) throws IOException {
         // throws IOException is required — BufferedReader methods throw checked exceptions
@@ -101,3 +101,4 @@ TIP: For competitive programming or reading large data,
 
 =============================================
 */
+

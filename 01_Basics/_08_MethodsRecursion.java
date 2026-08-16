@@ -1,7 +1,7 @@
 // Program to demonstrate Methods (Functions) and Recursion in Java
 // Covers: void methods, return type methods, parameters, overloading, varargs, recursion
 
-public class _08_Methods_Recursion {
+public class _08_MethodsRecursion {
 
     // -------------------------------------------------------
     // METHOD SYNTAX:
@@ -260,3 +260,4 @@ Key differences:
 
 =============================================
 */
+

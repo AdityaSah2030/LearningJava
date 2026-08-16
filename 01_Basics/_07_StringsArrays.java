@@ -4,7 +4,7 @@
 import java.util.Arrays;    // for Arrays utility methods
 import java.util.Scanner;
 
-public class _07_Strings_Arrays {
+public class _07_StringsArrays {
 
     public static void main(String[] args) {
 
@@ -220,3 +220,4 @@ C ARRAY vs JAVA ARRAY:
 
 =============================================
 */
+
