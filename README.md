@@ -8,7 +8,7 @@ This repository is structured to help you revise Java fundamentals quickly. The 
 ## 📂 Structure
 - `00_setup.md` - Quick start guide to set up the Java Development Kit (JDK) and environment.
 - `01_Basics/` - Core language concepts, including `00_theory.md` for foundational theory, followed by well-annotated code examples.
-- `02_OOPs/` - Implementations and concepts of Object-Oriented Programming in Java.
+- `02_OOP/` - Implementations and concepts of Object-Oriented Programming in Java.
 
 ## 🌟 Support
 If you find this repository helpful for your learning journey, please consider giving it a **Star** ⭐! Keep learning and keep coding!
