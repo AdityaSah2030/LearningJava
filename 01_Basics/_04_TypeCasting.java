@@ -1,150 +1,129 @@
 // Program to demonstrate Type Casting in Java
-// Casting = converting one data type to another
 
 public class _04_TypeCasting {
 
     public static void main(String[] args) {
 
-        // -------------------------------------------------------
-        // 1. WIDENING CASTING (Implicit / Automatic)
-        //    → Smaller type → Larger type (no data loss, Java does it automatically)
-        //    byte → short → int → long → float → double
-        // -------------------------------------------------------
-        System.out.println("---- Widening Casting (Implicit) ----");
-
-        byte   b = 42;
-        short  s = b;       // byte  → short  (automatic)
-        int    i = s;       // short → int    (automatic)
-        long   l = i;       // int   → long   (automatic)
-        float  f = l;       // long  → float  (automatic)
-        double d = f;       // float → double (automatic)
-
-        System.out.println("byte   : " + b);
-        System.out.println("short  : " + s);
-        System.out.println("int    : " + i);
-        System.out.println("long   : " + l);
-        System.out.println("float  : " + f);
-        System.out.println("double : " + d);
 
         // -------------------------------------------------------
-        // 2. NARROWING CASTING (Explicit / Manual)
-        //    → Larger type → Smaller type (may lose data, must cast manually)
-        //    double → float → long → int → short → byte
+        // WIDENING CASTING
+        //
+        // Smaller data type → Larger data type
+        // Done automatically by Java.
         // -------------------------------------------------------
-        System.out.println("\n---- Narrowing Casting (Explicit) ----");
 
-        double  dVal = 99.99;
-        float   fVal = (float)  dVal;   // double → float  | may lose precision
-        long    lVal = (long)   dVal;   // double → long   | decimal part is DROPPED (not rounded)
-        int     iVal = (int)    dVal;   // double → int    | decimal part is DROPPED
-        short   sVal = (short)  iVal;   // int    → short  | may overflow if value is too large
-        byte    bVal = (byte)   iVal;   // int    → byte   | may overflow
+        int intValue = 100;
 
-        System.out.println("double → float  : " + fVal); // 99.99
-        System.out.println("double → long   : " + lVal); // 99   (decimal dropped)
-        System.out.println("double → int    : " + iVal); // 99   (decimal dropped)
-        System.out.println("int    → short  : " + sVal); // 99
-        System.out.println("int    → byte   : " + bVal); // 99
+        long longValue = intValue;
+        float floatValue = longValue;
+        double doubleValue = floatValue;
 
-        // -------------------------------------------------------
-        // 3. DATA LOSS EXAMPLE (overflow on narrowing)
-        // -------------------------------------------------------
-        System.out.println("\n---- Data Loss on Overflow ----");
-        int bigInt = 300;
-        byte overflow = (byte) bigInt;  // 300 is outside byte range (-128 to 127)
-        System.out.println("int 300 → byte  : " + overflow); // 44  (wraps around)
+        System.out.println("---- Widening Casting ----");
 
-        double pi = 3.14159;
-        int piInt = (int) pi;           // decimal portion is truncated, NOT rounded
-        System.out.println("double 3.14159 → int : " + piInt); // 3
+        System.out.println("int    : " + intValue);       // 100
+        System.out.println("long   : " + longValue);      // 100
+        System.out.println("float  : " + floatValue);     // 100.0
+        System.out.println("double : " + doubleValue);    // 100.0
+
 
         // -------------------------------------------------------
-        // 4. CASTING IN EXPRESSIONS
+        // NARROWING CASTING
+        //
+        // Larger data type → Smaller data type
+        // Requires explicit casting.
         // -------------------------------------------------------
-        System.out.println("\n---- Casting in Expressions ----");
-        int x = 7, y = 2;
 
-        int    intDiv    = x / y;                      // integer division → 3
-        double doubleDiv = (double) x / y;             // cast x to double first → 3.5
-        double alsoOk    = x / (double) y;             // casting y also works    → 3.5
+        double doubleNumber = 10.75;
 
-        System.out.println("7 / 2           = " + intDiv);     // 3
-        System.out.println("(double)7 / 2   = " + doubleDiv);  // 3.5
-        System.out.println("7 / (double)2   = " + alsoOk);     // 3.5
+        int intNumber = (int) doubleNumber;
 
-        // -------------------------------------------------------
-        // 5. CHAR ↔ INT CASTING (useful and common)
-        // -------------------------------------------------------
-        System.out.println("\n---- char ↔ int Casting ----");
-        char ch = 'A';
-        int ascii = (int) ch;           // char → int gives ASCII/Unicode value
-        System.out.println("'A' as int  : " + ascii);  // 65
+        System.out.println("\n---- Narrowing Casting ----");
 
-        int code = 90;
-        char letter = (char) code;      // int → char gives the character for that code
-        System.out.println("90 as char  : " + letter); // Z
+        System.out.println("double : " + doubleNumber);    // 10.75
+        System.out.println("int    : " + intNumber);       // 10
 
-        // Char arithmetic
-        System.out.println("'A' + 1 as char : " + (char)('A' + 1));    // B
-        System.out.println("'a' to upper    : " + (char)('a' - 32));   // A
+        // Decimal part is removed, not rounded.
+
 
         // -------------------------------------------------------
-        // 6. STRING ↔ PRIMITIVE CONVERSIONS (not casting, but related)
+        // DATA LOSS DURING NARROWING
         // -------------------------------------------------------
-        System.out.println("\n---- String ↔ Primitive Conversions ----");
 
-        // Primitive → String
-        int    num = 42;
-        String str1 = String.valueOf(num);          // int    → String using valueOf()
-        String str2 = Integer.toString(num);        // int    → String using toString()
-        String str3 = "" + num;                     // int    → String using concatenation trick
+        int largeNumber = 130;
 
-        System.out.println("int → String : \"" + str1 + "\"");
-        System.out.println("int → String : \"" + str2 + "\"");
-        System.out.println("int → String : \"" + str3 + "\"");
+        byte byteNumber = (byte) largeNumber;
 
-        // String → Primitive
-        String numStr = "123";
-        int    parsed  = Integer.parseInt(numStr);      // String → int
-        double parsedD = Double.parseDouble("3.14");    // String → double
-        long   parsedL = Long.parseLong("9876543210");  // String → long
+        System.out.println("\n---- Data Loss ----");
 
-        System.out.println("String \"123\" → int    : " + parsed);
-        System.out.println("String \"3.14\" → double: " + parsedD);
-        System.out.println("String → long           : " + parsedL);
+        System.out.println("int  : " + largeNumber);       // 130
+        System.out.println("byte : " + byteNumber);        // -126
+
+
+        // -------------------------------------------------------
+        // CHAR AND INTEGER
+        //
+        // char can be converted to int automatically.
+        // int can be converted to char using explicit casting.
+        // -------------------------------------------------------
+
+        char character = 'A';
+
+        int asciiValue = character;
+
+        char newCharacter = (char) 66;
+
+        System.out.println("\n---- char and int ----");
+
+        System.out.println("Character : " + character);    // A
+        System.out.println("int value  : " + asciiValue);  // 65
+        System.out.println("char value : " + newCharacter); // B
+
+
+        // -------------------------------------------------------
+        // CASTING DURING CALCULATION
+        // -------------------------------------------------------
+
+        int a = 5;
+        int b = 2;
+
+        double result1 = a / b;
+        double result2 = (double) a / b;
+
+        System.out.println("\n---- Casting in Calculation ----");
+
+        System.out.println("a / b           : " + result1);  // 2.0
+        System.out.println("(double) a / b  : " + result2);  // 2.5
+
+
+        // -------------------------------------------------------
+        // EXPRESSION TYPE
+        //
+        // The result of an arithmetic expression depends on
+        // the types of the operands.
+        // -------------------------------------------------------
+
+        byte x = 10;
+        byte y = 20;
+
+        int sum = x + y;
+
+        System.out.println("\n---- Expression Type ----");
+
+        System.out.println("x + y : " + sum);               // 30
+
+        // byte + byte results in int in Java.
+
+
+        // -------------------------------------------------------
+        // OBJECT TYPE CASTING
+        // -------------------------------------------------------
+
+        Object value = "Java";
+
+        String text = (String) value;
+
+        System.out.println("\n---- Object Casting ----");
+
+        System.out.println("Value : " + text);              // Java
     }
 }
-
-
-/*
-=============================================
-WIDENING ORDER (automatic / safe)
-=============================================
-
-byte → short → int → long → float → double
-                            char → int (char is treated as unsigned)
-
-=============================================
-NARROWING ORDER (manual / may lose data)
-=============================================
-
-double → float → long → int → short → byte
-
-=============================================
-QUICK RULE OF THUMB
-=============================================
-
-Going UP   the chain → compiler handles it automatically (Widening)
-Going DOWN the chain → you must write the cast explicitly   (Narrowing)
-
-When casting floating point to integer:
-  Decimal is TRUNCATED (not rounded)
-  3.9 → 3, not 4
-
-When casting to a smaller int type:
-  Overflow wraps around using modular arithmetic
-  300 as byte → 300 % 256 = 44 (roughly)
-
-=============================================
-*/
-
