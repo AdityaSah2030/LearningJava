@@ -1,25 +1,5 @@
 # Basic Maths for DSA — Java Edition
 
-A single reference covering the "Basic Maths" playlist chapters plus a few
-extra topics that always show up alongside them in interviews and competitive
-programming. Everything is written in **plain Java using only primitives and
-arrays** — no `ArrayList`, `HashMap`, `HashSet`, etc. (`Arrays.fill` is a
-static utility method on the `java.util.Arrays` class, not part of the
-Collections Framework, so it's used freely below.)
-
-Wrap all of these in one class if you want a single compilable file:
-
-```java
-import java.util.Arrays;
-
-public class BasicMaths {
-    // paste methods here
-    public static void main(String[] args) {
-        // quick manual tests
-    }
-}
-```
-
 ---
 
 ## Table of Contents
@@ -35,10 +15,15 @@ public class BasicMaths {
 9. [Armstrong Number](#9-armstrong-number)
 10. [Find All Divisors / Perfect Number](#10-find-all-divisors--perfect-number)
 11. [Print All Primes from 1 to N (Sieve of Eratosthenes)](#11-print-all-primes-from-1-to-n-sieve-of-eratosthenes)
-12. [Beyond the Video: Essentials from the Reference Notes](#12-beyond-the-video-essentials-from-the-reference-notes)
-13. [Bonus: Frequently Paired Interview Topics](#13-bonus-frequently-paired-interview-topics)
-14. [Complexity Summary Table](#14-complexity-summary-table)
-15. [Java-Specific Pitfalls to Remember](#15-java-specific-pitfalls-to-remember)
+12. [Prime Factorization (Optimized)](#12-prime-factorization-optimized)
+13. [Smallest Prime Factor (SPF) Sieve](#13-smallest-prime-factor-spf-sieve)
+14. [Fast / Binary Exponentiation](#14-fast--binary-exponentiation)
+15. [Modular Exponentiation](#15-modular-exponentiation)
+16. [Count Primes in Range [L, R] — Segmented Sieve (Advanced)](#16-count-primes-in-range-l-r--segmented-sieve-advanced)
+17. [Trailing Zeros in N!](#17-trailing-zeros-in-n)
+18. [nCr (Binomial Coefficient)](#18-ncr-binomial-coefficient)
+19. [Complexity Summary Table](#19-complexity-summary-table)
+20. [Java-Specific Pitfalls to Remember](#20-java-specific-pitfalls-to-remember)
 
 ---
 
@@ -93,7 +78,9 @@ public static int countDigitsIterative(int n) {
     }
     return count;
 }
+```
 
+```java
 public static int countDigitsLog(int n) {
     if (n == 0) return 1;
     n = Math.abs(n);
@@ -101,7 +88,7 @@ public static int countDigitsLog(int n) {
 }
 ```
 
-> **Gotcha:** `Math.log10` uses floating point internally, so for exact
+> `Math.log10` uses floating point internally, so for exact
 > powers of 10 it can occasionally be off by one due to precision error
 > (e.g. `log10(1000)` sometimes evaluates to `2.9999999999...`). The
 > iterative version is always correct — use it when correctness matters
@@ -126,7 +113,7 @@ public static int sumOfDigits(int n) {
 ```
 
 **Bonus — Digital Root:** repeatedly summing digits until one digit remains
-has an O(1) closed form: for `n > 0`, digital root `= 1 + (n - 1) % 9`
+has an O(1), for `n > 0`, digital root `= 1 + (n - 1) % 9`
 (and `0` for `n == 0`). Handy if a follow-up asks you to avoid the loop.
 
 **Time:** O(log n) &nbsp;&nbsp; **Space:** O(1)
@@ -155,8 +142,7 @@ public static int reverseNumber(int n) {
 
 Using a `long` accumulator and checking against `Integer.MAX_VALUE` before
 casting back is the difference between a correct solution and one that
-silently wraps around on inputs like `1534236469` — this exact overflow
-check is what LeetCode's "Reverse Integer" problem is testing.
+silently wraps around on inputs like `1534236469`.
 
 **Time:** O(log n) &nbsp;&nbsp; **Space:** O(1)
 
@@ -368,13 +354,7 @@ prime factor, so starting at `i * i` skips redundant work.
 
 ---
 
-## 12. Beyond the Video: Essentials from the Reference Notes
-
-These didn't appear in the video chapter list but sit right next to
-"primes" and "sieve" in almost every DSA course and interview — worth
-knowing alongside sections 6 and 11 above.
-
-### 12.1 Prime Factorization (Optimized)
+## 12. Prime Factorization (Optimized)
 
 ```java
 public static void printPrimeFactors(int n) {
@@ -397,7 +377,9 @@ public static void printPrimeFactors(int n) {
 
 **Time:** O(√n) &nbsp;&nbsp; **Space:** O(1) (excluding output)
 
-### 12.2 Smallest Prime Factor (SPF) Sieve
+---
+
+## 13 Smallest Prime Factor (SPF) Sieve
 
 Precompute once in O(n log log n), then factorize *any* number ≤ n in
 O(log n) — useful when you need to factorize many numbers, not just one.
@@ -428,7 +410,9 @@ public static void factorizeUsingSPF(int n, int[] spf) {
 
 **Time:** O(n log log n) preprocessing, O(log n) per query &nbsp;&nbsp; **Space:** O(n)
 
-### 12.3 Fast / Binary Exponentiation
+---
+
+## 14 Fast / Binary Exponentiation
 
 Computes `base^exp` in O(log exp) instead of O(exp) by squaring the base
 and halving the exponent each step.
@@ -449,7 +433,9 @@ public static long fastPow(long base, long exp) {
 
 **Time:** O(log exp) &nbsp;&nbsp; **Space:** O(1)
 
-### 12.4 Modular Exponentiation
+---
+
+## 15 Modular Exponentiation
 
 Same idea, but taking `% mod` after every multiplication so intermediate
 values never overflow — essential whenever a problem says *"answer modulo
@@ -472,7 +458,9 @@ public static long modPow(long base, long exp, long mod) {
 
 **Time:** O(log exp) &nbsp;&nbsp; **Space:** O(1)
 
-### 12.5 Count Primes in Range [L, R] — Segmented Sieve (Advanced)
+---
+
+## 16 Count Primes in Range [L, R] — Segmented Sieve (Advanced)
 
 Flagged as **advanced / optional** — this is the one genuinely
 competitive-programming-level topic here (needed when `R` is too large to
@@ -525,12 +513,7 @@ public static int countPrimesInRange(long L, long R) {
 
 ---
 
-## 13. Bonus: Frequently Paired Interview Topics
-
-Two more that regularly show up in the same interview round as "basic
-maths" and build directly on the ideas above.
-
-### 13.1 Trailing Zeros in N!
+## 17. Trailing Zeros in N!
 
 Trailing zeros come from factors of `10 = 2 × 5`, and factors of 5 are
 always the bottleneck (there are always more 2s than 5s), so just count
@@ -548,7 +531,9 @@ public static int trailingZerosInFactorial(int n) {
 
 **Time:** O(log₅ n) &nbsp;&nbsp; **Space:** O(1)
 
-### 13.2 nCr (Binomial Coefficient)
+---
+
+## 18. nCr (Binomial Coefficient)
 
 Computing `n! / (r! (n-r)!)` directly overflows fast. Multiplying and
 dividing in the same loop, in this exact order, keeps every intermediate
@@ -571,7 +556,7 @@ public static long nCr(int n, int r) {
 
 ---
 
-## 14. Complexity Summary Table
+## 19. Complexity Summary Table
 
 | Topic | Time | Space |
 |---|---|---|
@@ -595,7 +580,7 @@ public static long nCr(int n, int r) {
 
 ---
 
-## 15. Java-Specific Pitfalls to Remember
+## 20. Java-Specific Pitfalls to Remember
 
 - **`int` overflow in loop conditions:** `i * i <= n` can overflow before
   the comparison happens when `i` is large — cast to `(long) i * i` (used
